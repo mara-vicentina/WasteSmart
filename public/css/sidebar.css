@@ -1,0 +1,32 @@
+.bg-green-animal {
+  background-color: #5F9EA0;
+}
+
+.img-sidebar {
+  width: auto;
+  height: 80px;
+}
+
+.nav-pills li a:hover {
+  background-color: #EBF2E8;
+  color: #5F9EA0!important;
+  box-shadow: 0 0 10px 1px #4a7c7e;
+}
+
+.nav-pills li a:active {
+  background-color: #EBF2E8;
+  color: #5F9EA0!important;
+  box-shadow: 0 0 10px 1px #4a7c7e;
+}
+
+.active-sidebar {
+  background-color: #EBF2E8;
+  color: #5F9EA0!important;
+  box-shadow: 0 0 10px 1px #4a7c7e;
+}
+
+@media (max-width: 700px) {
+	.custom-title-sidebar {
+    font-size: 0.9rem !important;
+  }
+}
