@@ -21,8 +21,11 @@
               </div>
               <div class="mb-3">
                   <label for="senha" class="form-label dark-gray">Senha</label>
-                  <input type="password" class="form-control light-gray" id="senha" name="senha" placeholder="Insira sua senha">
+                  <input type="password" class="form-control light-gray" id="password" name="password" placeholder="Insira sua senha">
               </div>
+
+              @include('alerts/error-message')
+              @include('alerts/error-validation')
 
               <div class="mt-3 mb-3">
                   <button type="submit" class="btn btn-primary form-control custom-button-change">Entrar</button>

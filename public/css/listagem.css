@@ -1,5 +1,5 @@
 .edit-info {
-    stroke: #5F9EA0;
+    stroke: #3ea8bd;
 }
 
 .delete-info {
@@ -8,7 +8,7 @@
 
 .title-head {
     font-size: 0.9rem;
-    color: #008B8B!important;
+    color: #3ea8bd!important;
 }
 
 .subtitle-list {
@@ -31,7 +31,7 @@
 }
    
 .card::-webkit-scrollbar-thumb {
-    background: #5F9EA0; 
+    background: #3ea8bd; 
     border-radius: 5px;
 }
 

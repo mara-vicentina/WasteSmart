@@ -1,28 +1,24 @@
-.bg-green-animal {
-  background-color: #5F9EA0;
-}
-
 .img-sidebar {
-  width: auto;
-  height: 80px;
+  width: 100%;
+  height: auto;
 }
 
 .nav-pills li a:hover {
-  background-color: #EBF2E8;
-  color: #5F9EA0!important;
-  box-shadow: 0 0 10px 1px #4a7c7e;
+  background-color: #f8f9fa;
+  color: #85827e!important;
+  box-shadow: 0 0 10px 1px #85827e;
 }
 
 .nav-pills li a:active {
-  background-color: #EBF2E8;
-  color: #5F9EA0!important;
-  box-shadow: 0 0 10px 1px #4a7c7e;
+  background-color: #f8f9fa;
+  color: #85827e!important;
+  box-shadow: 0 0 10px 1px #85827e;
 }
 
 .active-sidebar {
-  background-color: #EBF2E8;
-  color: #5F9EA0!important;
-  box-shadow: 0 0 10px 1px #4a7c7e;
+  background-color: #f8f9fa;
+  color: #3ea8bd!important;
+  box-shadow: 0 0 10px 1px #85827e;
 }
 
 @media (max-width: 700px) {

@@ -17,8 +17,73 @@
         <form method="POST" action="{{ url('/user') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="mb-3">
-                <label for="nome_completo" class="form-label dark-gray">Nome Completo</label>
-                <input type="text" class="form-control light-gray" id="nome_completo" name="nome_completo" placeholder="Insira seu nome completo">
+              <label for="nome_completo" class="form-label dark-gray">Nome Completo</label>
+              <input type="text" class="form-control light-gray" id="full_name" name="full_name" placeholder="Insira o nome completo">
+            </div>
+            <div class="row">
+                <div class="col-7">
+                  <div class="mb-3">
+                    <label class="form-label dark-gray">CPF</label>
+                    <input type="text" class="form-control light-gray" name="cpf" placeholder="Insira o CPF">
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="mb-3">
+                    <label for="telefone" class="form-label dark-gray">Telefone</label>
+                    <input type="text" pattern="^[0-9\s\(\)\-\+]{6,25}$" placeholder="Insira o telefone" maxlength="25" class="form-control light-gray" id="phone" name="phone">
+                  </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h2 class="fs-5 sec-color">Endereço</h2>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">CEP</label>
+                        <input type="text" class="form-control light-gray" name="cep" placeholder="Insira o CEP">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Rua</label>
+                        <input type="text" class="form-control light-gray" name="street" placeholder="Insira a rua">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Número</label>
+                        <input type="text" class="form-control light-gray" name="number" placeholder="Insira o número">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Complemento/Referência</label>
+                        <input type="text" class="form-control light-gray" name="complement" placeholder="Insira o complemento/referência">
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Bairro</label>
+                        <input type="text" class="form-control light-gray" name="neighborhood" placeholder="Insira o bairro">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-7">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Cidade</label>
+                        <input type="text" class="form-control light-gray" name="city" placeholder="Insira a cidade">
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Estado</label>
+                        <input type="text" class="form-control light-gray" name="state" placeholder="Insira o estado">
+                    </div>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label dark-gray">E-mail</label>
@@ -26,16 +91,15 @@
             </div>
             <div class="mb-3">
                 <label for="senha" class="form-label dark-gray">Senha</label>
-                <input type="password" class="form-control light-gray" id="senha" name="senha" placeholder="Insira sua senha">
+                <input type="password" class="form-control light-gray" id="password" name="password" placeholder="Insira sua senha">
             </div>
             <div class="mb-3">
                 <label for="confirmacao_senha" class="form-label dark-gray">Confirmação de Senha</label>
-                <input type="password" class="form-control light-gray" id="confirmacao_senha" name="confirmacao_senha" placeholder="Confirme sua senha">
+                <input type="password" class="form-control light-gray" id="password_confirm" name="password_confirm" placeholder="Confirme sua senha">
             </div>
-            <div class="mb-3">
-                <label for="telefone" class="form-label dark-gray">Telefone</label>
-                <input type="text" pattern="^[0-9\s\(\)\-\+]{6,25}$" placeholder="Insira seu telefone" maxlength="25" class="form-control light-gray" id="telefone" name="telefone">
-            </div>
+
+            @include('alerts/error-message')
+            @include('alerts/error-validation')
 
             <div class="mt-3 mb-3">
                 <button type="submit" class="btn btn-primary form-control custom-button-change">Cadastrar</button>
