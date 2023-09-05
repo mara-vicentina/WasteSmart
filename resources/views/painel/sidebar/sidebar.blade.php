@@ -16,25 +16,25 @@
           </a>
         </li>
         <li class="nav-item py-3 py-sm-0 mt-3">
-          <a href="{{ url('painel/public-lighting') }}" class="nav-link text-white {{ $currentPage == 'public-lighting' ? 'active-sidebar' : '' }}">
+          <a href="{{ Auth::user()->type === 'admin' ? url('painel/public-lighting/admin') : url('painel/public-lighting') }}" class="nav-link text-white {{ $currentPage == 'public-lighting' ? 'active-sidebar' : '' }}">
             <i data-feather="sun"></i>
             <span class="fs-5 ms-3 d-none d-sm-inline custom-title-sidebar">Iluminação Pública</span>
           </a>
         </li>
         <li class="nav-item py-3 py-sm-0 mt-3">
-          <a href="{{ url('painel/infraestructure') }}" class="nav-link text-white {{ $currentPage == 'infraestructure' ? 'active-sidebar' : '' }}">
+          <a href="{{ Auth::user()->type === 'admin' ? url('painel/infraestructure/admin') : url('painel/infraestructure') }}" class="nav-link text-white {{ $currentPage == 'infraestructure' ? 'active-sidebar' : '' }}">
             <i data-feather="columns"></i>
             <span class="fs-5 ms-3 d-none d-sm-inline custom-title-sidebar">Infraestrutura</span>
           </a>
         </li>
         <li class="nav-item py-3 py-sm-0 mt-3">
-          <a href="{{ url('painel/accessibility') }}" class="nav-link text-white {{ $currentPage == 'accessibility' ? 'active-sidebar' : '' }}">
+          <a href="{{ Auth::user()->type === 'admin' ? url('painel/accessibility/admin') : url('painel/accessibility') }}" class="nav-link text-white {{ $currentPage == 'accessibility' ? 'active-sidebar' : '' }}">
             <i data-feather="users"></i>
             <span class="fs-5 ms-3 d-none d-sm-inline custom-title-sidebar">Acessibilidade</span>
           </a>
         </li>
         <li class="nav-item py-3 py-sm-0 mt-3">
-          <a href="{{ url('painel/traffic-security') }}" class="nav-link text-white {{ $currentPage == 'traffic-security' ? 'active-sidebar' : '' }}">
+          <a href="{{ Auth::user()->type === 'admin' ? url('painel/traffic-security/admin') : url('painel/traffic-security') }}" class="nav-link text-white {{ $currentPage == 'traffic-security' ? 'active-sidebar' : '' }}">
             <i data-feather="disc"></i>
             <span class="fs-5 ms-3 d-none d-sm-inline custom-title-sidebar">Trânsito e Segurança</span>
           </a>

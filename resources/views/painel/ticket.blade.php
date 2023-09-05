@@ -5,7 +5,7 @@
       <div class="px-4 pt-4">
         <div class="row">
             <div class="col-md-11">
-                <h1 class="modal-title fs-4 text-center sec-color"">Abertura de Ticket</h1>
+                <h1 class="modal-title fs-4 text-center sec-color">Abertura de Ticket</h1>
             </div>
             <div class="col-md-1">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -13,11 +13,12 @@
         </div>
       </div>
       <div class="modal-body px-4">
-        <form method="POST" action="{{ url('/client') }}">
+        <form method="POST" action="{{ url('/ticket') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="mb-3">
                 <label class="form-label dark-gray">Setor</label>
-                <input type="text" class="form-control light-gray" name="sector" disabled value="{{ $sectorName }}">
+                <input type="text" class="form-control light-gray" disabled value="{{ $sectorName }}">
+                <input type="hidden" name="sector" value="{{ $sectorName }}">
             </div>
             <div class="mb-3">
                 <label class="form-label dark-gray">Assunto</label>
@@ -31,13 +32,19 @@
                 <h2 class="fs-5 sec-color">Referente ao local</h2>
             </div>
             <div class="row">
-                <div class="col-7">
+                <div class="col-4">
                     <div class="mb-3">
-                        <label class="form-label dark-gray">Endereço</label>
-                        <input type="text" class="form-control light-gray" name="street" placeholder="Insira o endereço">
+                        <label class="form-label dark-gray">CEP</label>
+                        <input type="text" class="form-control light-gray" name="cep" placeholder="Insira o CEP">
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Rua</label>
+                        <input type="text" class="form-control light-gray" name="street" placeholder="Insira a rua">
+                    </div>
+                </div>
+                <div class="col-4">
                     <div class="mb-3">
                         <label class="form-label dark-gray">Número</label>
                         <input type="text" class="form-control light-gray" name="number" placeholder="Insira o número">
@@ -59,16 +66,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-7">
-                    <div class="mb-3">
-                        <label class="form-label dark-gray">Cidade</label>
-                        <input type="text" class="form-control light-gray" name="city" placeholder="Insira a cidade">
-                    </div>
-                </div>
-                <div class="col-5">
+                <div class="col-3">
                     <div class="mb-3">
                         <label class="form-label dark-gray">Estado</label>
-                        <input type="text" class="form-control light-gray" name="state" placeholder="Insira o estado">
+                        <select class="form-select light-gray uf-field" name="state" placeholder="Insira o estado"></select>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Cidade</label>
+                        <select class="form-select light-gray city-field" name="city" placeholder="Insira a cidade"></select>
                     </div>
                 </div>
             </div>

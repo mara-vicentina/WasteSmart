@@ -1,7 +1,11 @@
+var baseUrl = $('meta[name="base-url"]').attr('content');
+var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
 $(document).ready(function() {
     let currentUrl = new URL(window.location.href);
 
     let paramOpenCreateModalTicket = currentUrl.searchParams.get("open_create_modal_ticket");
+    let paramOpenCreateModalTicketMessage = currentUrl.searchParams.get("open_create_modal_ticket_message");
     // let paramOpenEditModalTicket = currentUrl.searchParams.get("open_edit_modal_ticket");
 
     let paramOpenCreateModalLogin = currentUrl.searchParams.get("open_create_modal_login");
@@ -9,6 +13,11 @@ $(document).ready(function() {
 
     if (paramOpenCreateModalTicket) {
         const modal = new bootstrap.Modal($('#ticket'), {});
+        modal.show();
+    }
+
+    if (paramOpenCreateModalTicketMessage) {
+        const modal = new bootstrap.Modal($('#ticket-message'), {});
         modal.show();
     }
 
@@ -27,23 +36,83 @@ $(document).ready(function() {
         modal.show();
     }
 
+    if ($('.uf-field').length > 0) {
+        $.get(baseUrl + "/states").done(function(states){
+            let options = "";
+            states.forEach((state) => {
+                options += `<option value="${state.uf}">${state.uf}</option>`;
+            });
+
+            $('.uf-field').prepend(options);
+            $('.uf-field').change();
+        });
+    }
+
+    $('.uf-field').on('change', () => {
+        let ufSelected = $('.uf-field').val();
+
+        $.get(baseUrl + `/cities/${ufSelected}`).done(function(cities){
+            let options = "";
+            cities.forEach((city) => {
+                options += `<option value="${city.id}">${city.name}</option>`;
+            });
+
+            $('.city-field').empty();
+            $('.city-field').prepend(options);
+        });
+    });
 });
 
-// function editClient(clienteId, data) {
-//     data = JSON.parse(data);
-//     $('#edicao-clientes input[name="client_id"]').val(clienteId);
-//     $('#edicao-clientes input[name="nome_completo"]').val(data.name);
-//     $('#edicao-clientes input[name="email"]').val(data.email);
-//     $('#edicao-clientes input[name="cpf"]').val(data.cpf);
-//     $('#edicao-clientes input[name="telefone"]').val(data.phone);
-//     $('#edicao-clientes input[name="cep"]').val(data.cep);
-//     $('#edicao-clientes input[name="rua"]').val(data.street);
-//     $('#edicao-clientes input[name="numero"]').val(data.number);
-//     $('#edicao-clientes input[name="complemento"]').val(data.complement);
-//     $('#edicao-clientes input[name="bairro"]').val(data.neighborhood);
-//     $('#edicao-clientes input[name="cidade"]').val(data.city);
-//     $('#edicao-clientes input[name="estado"]').val(data.state);
+function openTicketMessages(ticketId) {
+    $.get(baseUrl + `/ticket/${ticketId}`).done(function(ticket){
+        console.log(ticket)
 
-//     const modalEdicao = new bootstrap.Modal($('#edicao-clientes'), {});
-//     modalEdicao.show();
-// }
+        $('#ticket-message input[name="sector"]').val(ticket.sector);
+        $('#ticket-message input[name="subject"]').val(ticket.subject);
+        $('#ticket-message input[name="id"]').val(ticket.id);
+
+        loadTicketMessages(ticket.messages);
+
+        const modalTicketMessage = new bootstrap.Modal($('#ticket-message'), {});
+        modalTicketMessage.show();
+    });
+}
+
+function sendTicketMessage() {
+
+    let id = $('#ticket-message input[name="id"]').val();
+    let message = $('#ticket-message textarea[name="message"]').val();
+
+    if (!message) {
+        return;
+    }
+
+    $.post(baseUrl + `/ticket/message`, {
+        '_token': csrfToken,
+        'id': id,
+        'message': message
+    }).done(function(data){
+        loadTicketMessages(data.messages);
+        $('#ticket-message textarea[name="message"]').val('');
+    });
+}
+
+function loadTicketMessages(messages) {
+
+    $('#ticket-message .messages').empty();
+
+    messages.forEach((message) => {
+        $('#ticket-message .messages').append(`<div class="card mt-2">
+            <div class="card-header">
+                Data: ${message.created_at_formated}
+                <br/>
+                Usuário:  ${message.user_name}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>${message.message}</p>
+                </blockquote>
+            </div>
+        </div>`);
+    });
+}

@@ -72,16 +72,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-7">
-                    <div class="mb-3">
-                        <label class="form-label dark-gray">Cidade</label>
-                        <input type="text" class="form-control light-gray" name="city" placeholder="Insira a cidade">
-                    </div>
-                </div>
-                <div class="col-5">
+                <div class="col-3">
                     <div class="mb-3">
                         <label class="form-label dark-gray">Estado</label>
-                        <input type="text" class="form-control light-gray" name="state" placeholder="Insira o estado">
+                        <select class="form-select light-gray uf-field" name="state" placeholder="Insira o estado"></select>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="mb-3">
+                        <label class="form-label dark-gray">Cidade</label>
+                        <select class="form-select light-gray city-field" name="city" placeholder="Insira a cidade"></select>
                     </div>
                 </div>
             </div>

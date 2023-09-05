@@ -24,8 +24,9 @@ return new class extends Migration
             $table->integer('number');
             $table->string('complement');
             $table->string('neighborhood');
-            $table->string('city');
-            $table->string('state');
+            $table->foreignId('city_id')->constrained(
+                table: 'cities', indexName: 'user_city_id'
+            );
             $table->enum('type', ['admin', 'user']);
             $table->rememberToken();
             $table->timestamps();

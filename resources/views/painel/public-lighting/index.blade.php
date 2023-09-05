@@ -25,29 +25,40 @@
             <tr>
                 <th class="col title-head text-left">ID Ticket</th>
                 <th class="col title-head text-left">Assunto</th>
-                <th class="col title-head text-left">Mensagem</th>
-                <th class="col title-head text-left">Endereço</th>
+                <th class="col title-head text-left">CEP</th>
+                <th class="col title-head text-left">Rua</th>
                 <th class="col title-head text-left">Número</th>
                 <th class="col title-head text-left">Bairro</th>
+                <th class="col title-head text-left">Cidade</th>
+                <th class="col title-head text-left">Estado</th>
                 <th class="col title-head text-left">Situação</th>
                 <th class="col title-head text-left">Ações</th>
             </tr>
         </thead>
         <tbody>
+            @foreach ($tickets as $ticket)
             <tr>
-                <td class="col subtitle-list text-left"></td>
+                <td class="col subtitle-list text-left">{{ $ticket->id }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->subject }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->cep }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->street }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->number }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->neighborhood }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->city_name }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->uf }}</td>
+                <td class="col subtitle-list text-left">{{ $ticket->situation }}</td>
                 <td class="col subtitle-list text-left">
                     <div class="row">
                         <div class="col-6 p-0">
-                            <button id="button-edit-cliente-" class="btn btn-link" onclick="editClient()">
-                                <i data-feather="edit" class="d-inline edit-info"></i>
+                            <button id="button-see-ticket" class="btn btn-link" onclick="openTicketMessages({{ $ticket->id }})">
+                                <i data-feather="message-square" class="d-inline edit-info"></i>
                             </button>
                         </div>
                         <div class="col-6 p-0">
-                            <form method="POST" action="{{ url('/client') }}">
+                            <form method="POST" action="{{ url('/ticket') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="cliente_id" value="">
+                                <input type="hidden" name="id" value="{{ $ticket->id }}">
                                 <button type="submit" class="btn btn-link">
                                     <i data-feather="trash-2" class="d-inline delete-info"></i>
                                 </button>
@@ -56,9 +67,11 @@
                     </div>
                 </td>
             </tr>
+            @endforeach
         </tbody>
     </table>
 </div>
 
 @include('painel\ticket', ['sectorId' => 1, 'sectorName' => "Iluminação Pública"])
+@include('painel/ticket-messages')
 @endsection

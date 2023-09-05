@@ -99,3 +99,8 @@ body::-webkit-scrollbar-thumb {
 .custom-height {
     height: 100vh;
 }
+
+.card-ticket-messages {
+    height: 200px;
+    overflow-y: auto;
+}

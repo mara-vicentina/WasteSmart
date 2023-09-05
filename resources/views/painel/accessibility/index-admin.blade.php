@@ -29,8 +29,6 @@
                 <th class="col title-head text-left">Rua</th>
                 <th class="col title-head text-left">Número</th>
                 <th class="col title-head text-left">Bairro</th>
-                <th class="col title-head text-left">Cidade</th>
-                <th class="col title-head text-left">Estado</th>
                 <th class="col title-head text-left">Situação</th>
                 <th class="col title-head text-left">Ações</th>
             </tr>
@@ -43,22 +41,19 @@
                 <td class="col subtitle-list text-left">{{ $ticket->cep }}</td>
                 <td class="col subtitle-list text-left">{{ $ticket->street }}</td>
                 <td class="col subtitle-list text-left">{{ $ticket->number }}</td>
-                <td class="col subtitle-list text-left">{{ $ticket->neighborhood }}</td>
-                <td class="col subtitle-list text-left">{{ $ticket->city_name }}</td>
-                <td class="col subtitle-list text-left">{{ $ticket->uf }}</td>
                 <td class="col subtitle-list text-left">{{ $ticket->situation }}</td>
                 <td class="col subtitle-list text-left">
                     <div class="row">
                         <div class="col-6 p-0">
-                            <button id="button-see-ticket" class="btn btn-link" onclick="openTicketMessages({{ $ticket->id }})">
+                            <button id="button-see-ticket-" class="btn btn-link" onclick="seeTicket()">
                                 <i data-feather="message-square" class="d-inline edit-info"></i>
                             </button>
                         </div>
                         <div class="col-6 p-0">
-                            <form method="POST" action="{{ url('/ticket') }}">
+                            <form method="POST" action="{{ url('/client') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="id" value="{{ $ticket->id }}">
+                                <input type="hidden" name="cliente_id" value="">
                                 <button type="submit" class="btn btn-link">
                                     <i data-feather="trash-2" class="d-inline delete-info"></i>
                                 </button>
@@ -73,5 +68,4 @@
 </div>
 
 @include('painel\ticket', ['sectorId' => 3, 'sectorName' => "Acessibilidade"])
-@include('painel/ticket-messages')
 @endsection

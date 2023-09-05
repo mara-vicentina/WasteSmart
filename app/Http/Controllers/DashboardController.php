@@ -13,4 +13,11 @@ class DashboardController extends Controller
             'currentPage' => 'dashboard',
         ]);
     }
+
+    public function indexAdmin()
+    {
+        return view('painel/dashboard/index-admin', [
+            'currentPage' => 'dashboard',
+        ]);
+    }
 }

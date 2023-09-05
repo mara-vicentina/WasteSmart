@@ -4,6 +4,8 @@
     <meta http-equiv="Content-Language" content="pt-br">
     <meta name="description" content="Connected-City">
     <meta name="author" content="Connected-City">
+    <meta name="base-url" content="{{ URL::to('/') }}">
+    <meta name="csrf-token" content="{{csrf_token() }}">
 
     <title>Connected City</title>
 

@@ -43,8 +43,7 @@ class UserController extends Controller
         $usuario->number        = $request->number;
         $usuario->complement    = $request->complement;
         $usuario->neighborhood  = $request->neighborhood;
-        $usuario->city          = $request->city;
-        $usuario->state         = $request->state;
+        $usuario->city_id       = $request->city;
         $usuario->type          = "user";
         $usuario->save();
 
