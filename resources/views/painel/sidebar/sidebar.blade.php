@@ -10,7 +10,7 @@
       </div>
       <ul class="nav nav-pills flex-column mt-3">
         <li class="nav-item py-3 py-sm-0 mt-3">
-          <a href="{{ url('painel/dashboard') }}" class="nav-link text-white {{ $currentPage == 'dashboard' ? 'active-sidebar' : '' }}">
+          <a href="{{ Auth::user()->type === 'admin' ? url('painel/dashboard/admin') : url('painel/dashboard') }}" class="nav-link text-white {{ $currentPage == 'dashboard' ? 'active-sidebar' : '' }}">
             <i data-feather="bar-chart"></i>
             <span class="fs-5 ms-3 d-none d-sm-inline custom-title-sidebar">Dashboard</span>
           </a>

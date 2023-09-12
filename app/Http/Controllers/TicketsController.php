@@ -58,6 +58,15 @@ class TicketsController extends Controller
         return Redirect::to($urlAnterior);
     }
 
+    public function update(Request $request)
+    {
+        Ticket::whereId($request->id)->update([
+            'situation' => $request->situation
+        ]);
+        
+        return ['success' => true];
+    }
+
     public function getTicket($id)
     {
         $ticket = Ticket::whereId($id)->first();

@@ -29,8 +29,20 @@
                 </div>
             </div>
         </div>
-        
-        
+
+        @if (Auth::user()->type === 'admin')
+            <div class="row">
+                <div class="col-6">
+                    <label class="form-label dark-gray">Mudar Situação do Ticket:</label>
+                    <select class="form-select light-gray mb-3" name="situation">
+                        <option value="Aberto">Aberto</option>
+                        <option value="Em Andamento">Em Andamento</option>
+                        <option value="Fechado">Fechado</option>
+                    </select>
+                </div>
+            </div>
+        @endif
+
         <p class="form-label dark-graymb-0">Mensagens:</p>
         <div class="card px-3 py-3 card-ticket-messages">
             <div class="messages"></div>

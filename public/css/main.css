@@ -104,3 +104,20 @@ body::-webkit-scrollbar-thumb {
     height: 200px;
     overflow-y: auto;
 }
+
+.border-left-success {
+    border-left: .25rem solid #1cc88a!important
+}
+
+.border-left-info {
+    border-left: .25rem solid #36b9cc!important
+}
+
+.border-left-warning {
+    border-left: .25rem solid #f6c23e!important
+}
+
+.text-xs {
+    font-size: .9rem;
+    font-weight: 700!important;
+}

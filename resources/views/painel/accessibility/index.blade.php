@@ -12,7 +12,7 @@
             <div class="card-body fs-5">
                 <button type="button" class="btn btn-primary custom-button" data-bs-toggle="modal" data-bs-target="#ticket">
                 <i data-feather="plus" style="width:19px; height:19px;"></i>    
-                Cadastrar
+                Saiba mais
                 </button>
             </div>
         </div>

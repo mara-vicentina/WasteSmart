@@ -45,6 +45,7 @@ Route::middleware([LoginPermission::class])->group(function () {
     Route::get('/ticket/{id}', [TicketsController::class, 'getTicket']);
     Route::post('/ticket', [TicketsController::class, 'create']);
     Route::delete('/ticket', [TicketsController::class, 'remove']);
+    Route::put('/ticket', [TicketsController::class, 'update']);
 
     Route::post('/ticket/message', [TicketMessageController::class, 'create']);
 

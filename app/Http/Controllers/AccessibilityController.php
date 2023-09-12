@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\City;
 use App\Models\TicketsMessage;
+use Auth;
 
 class AccessibilityController extends Controller
 {
     public function index()
     {
-        $tickets = Ticket::where('sector', 'Acessibilidade')->get();
+        $tickets = Ticket::where('sector', 'Acessibilidade')
+            ->where('user_id', Auth::user()->id)
+            ->get();
 
         foreach ($tickets as $ticket) {
             $city = City::whereId($ticket->city_id)->first();
@@ -33,8 +36,11 @@ class AccessibilityController extends Controller
         $tickets = Ticket::where('sector', 'Acessibilidade')->get();
 
         foreach ($tickets as $ticket) {
-            // $ticket->first_message   = TicketsMessage::where('ticket_id', $ticket->id)->first()->message;
-            $ticket->json_data       = $ticket->toJson();
+            $city = City::whereId($ticket->city_id)->first();
+            
+            $ticket->city_name = $city->name;
+            $ticket->uf        = $city->uf;
+            $ticket->json_data = $ticket->toJson();
         }
 
         return view('painel/accessibility/index-admin', [

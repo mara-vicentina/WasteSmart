@@ -70,6 +70,7 @@ function openTicketMessages(ticketId) {
         $('#ticket-message input[name="sector"]').val(ticket.sector);
         $('#ticket-message input[name="subject"]').val(ticket.subject);
         $('#ticket-message input[name="id"]').val(ticket.id);
+        $(`#ticket-message select[name="situation"] option[value="${ticket.situation}"]`).prop('selected', true);
 
         loadTicketMessages(ticket.messages);
 
@@ -116,3 +117,19 @@ function loadTicketMessages(messages) {
         </div>`);
     });
 }
+
+$('#ticket-message select[name="situation"]').on('change', function(){
+    let ticketId = $('#ticket-message input[name="id"]').val();
+    let situation = $('#ticket-message select[name="situation"]').val();
+
+    $.post(baseUrl + `/ticket`, {
+        '_token': csrfToken,
+        '_method': 'PUT',
+        'id': ticketId,
+        'situation': situation
+    }).done(function(data) {
+        if (data.success) {
+            location.reload();
+        }
+    });
+});
