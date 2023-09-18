@@ -23,7 +23,11 @@ class LoginController extends Controller
         };
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return Redirect::to('painel/dashboard');
+            if (Auth::user()->type === 'user'){
+                return Redirect::to('painel/dashboard');
+            } else {
+                return Redirect::to('painel/dashboard/admin');
+            }
         }
  
         Session::flash('error_message', 'E-mail ou senha incorreto(s).');

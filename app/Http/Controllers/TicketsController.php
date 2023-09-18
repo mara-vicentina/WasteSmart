@@ -17,7 +17,6 @@ class TicketsController extends Controller
 {
     public function create(Request $request)
     {
-        info($request->all());
         $validator = Validator::make($request->all(), [
             'sector'               => ['required', 'string'],
             'subject'              => ['required', 'string'],
@@ -78,6 +77,7 @@ class TicketsController extends Controller
         foreach($ticket->messages as $message) {
             $message->created_at_formated = (new DateTime($message->created_at))->format('d/m/Y H:i:s');
             $message->user_name = User::whereId($message->user_id)->first()->name;
+            $message->user_type = User::whereId($message->user_id)->first()->type;
         }
 
         return $ticket;

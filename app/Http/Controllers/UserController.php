@@ -10,6 +10,14 @@ use Validator;
 
 class UserController extends Controller
 {
+    public function getUsers($id)
+    {
+        $user = User::where('id', $id)
+            ->get();
+
+        return $user;
+    }
+
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [

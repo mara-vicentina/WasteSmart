@@ -18,6 +18,7 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TicketMessageController;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,16 +50,17 @@ Route::middleware([LoginPermission::class])->group(function () {
 
     Route::post('/ticket/message', [TicketMessageController::class, 'create']);
 
+    Route::post('/feedback', [FeedbackController::class, 'create']);
+    Route::get('/feedback/{ticketId}', [FeedbackController::class, 'get']);
+});
+
+// ROTAS QUE O TIPO USER ACESSA
+Route::middleware([UserPermission::class])->group(function () {
     Route::get('/painel/dashboard', [DashboardController::class, 'index']);
     Route::get('/painel/public-lighting', [PublicLightingController::class, 'index']);
     Route::get('/painel/infraestructure', [InfraestructureController::class, 'index']);
     Route::get('/painel/accessibility', [AccessibilityController::class, 'index']);
     Route::get('/painel/traffic-security', [TrafficSecurityController::class, 'index']);
-});
-
-// ROTAS QUE O TIPO USER ACESSA
-Route::middleware([UserPermission::class])->group(function () {
-    
 });
 
 // ROTAS QUE O TIPO ADMIN ACESSA

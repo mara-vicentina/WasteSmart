@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\TicketsMessage;
 use App\Models\City;
+use App\Models\Feedback;
 use Auth;
 
 class PublicLightingController extends Controller
@@ -41,6 +42,7 @@ class PublicLightingController extends Controller
             $ticket->city_name = $city->name;
             $ticket->uf        = $city->uf;
             $ticket->json_data = $ticket->toJson();
+            $ticket->haveFeedback = is_null(Feedback::where('ticket_id', $ticket->id)->first()) ? false : true;
         }
 
         return view('painel/public-lighting/index-admin', [

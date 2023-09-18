@@ -45,17 +45,22 @@
                 <td class="col subtitle-list text-left">{{ $ticket->situation }}</td>
                 <td class="col subtitle-list text-left">
                     <div class="row">
-                        <div class="col-6 p-0">
-                            <button id="button-see-ticket" class="btn btn-link" onclick="openTicketMessages({{ $ticket->id }})">
+                        <div class="col-4 p-0">
+                            <button id="button-see-ticket" class="btn btn-link" onclick="openTicketMessages({{ $ticket->id }})" data-toggle="tooltip" data-placement="bottom" title="mensagens">
                                 <i data-feather="message-square" class="d-inline edit-info"></i>
                             </button>
                         </div>
-                        <div class="col-6 p-0">
+                        <div class="col-4 p-0">
+                            <button id="button-see-ticket" class="btn btn-link" onclick="openFeedback({{ $ticket->id }})" data-toggle="tooltip" data-placement="bottom" title="feedback">
+                                <i data-feather="file-text" class="d-inline edit-info"></i>
+                            </button>
+                        </div>
+                        <div class="col-4 p-0">
                             <form method="POST" action="{{ url('/ticket') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="id" value="{{ $ticket->id }}">
-                                <button type="submit" class="btn btn-link">
+                                <button type="submit" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="deletar">
                                     <i data-feather="trash-2" class="d-inline delete-info"></i>
                                 </button>
                             </form>
@@ -70,4 +75,5 @@
 
 @include('painel\ticket', ['sectorId' => 3, 'sectorName' => "Acessibilidade"])
 @include('painel/ticket-messages')
+@include('painel/feedback')
 @endsection
