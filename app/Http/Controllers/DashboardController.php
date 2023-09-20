@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
+use App\Models\Feedback;
 use App\Models\City;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,6 +47,9 @@ class DashboardController extends Controller
             'setorAccessi' => Ticket::getTicketCountBySectorAdmin('Acessibilidade'),
             'setorPublic'  => Ticket::getTicketCountBySectorAdmin('Iluminação Pública'),
             'setorTraffic' => Ticket::getTicketCountBySectorAdmin('Trânsito e Segurança'),
+            'satisfeito'   => Feedback::getFeedbackByEvaluationAdmin(1),
+            'neutro'       => Feedback::getFeedbackByEvaluationAdmin(2),
+            'infeliz'      => Feedback::getFeedbackByEvaluationAdmin(3),
         ]);
     }
 

@@ -3,12 +3,20 @@
 @section('page-content')
 <div class="card m-5 shadow">
     <div class="row">
-        <div class="col-md-10 col-sm-7">
+        <div class="col-md-8 col-sm-4">
             <div class="card-body fs-5 main-color">
                 Iluminação Pública
             </div>
         </div>
-        <div class="col-md-2 col-sm-5">
+        <div class="col-md-2 col-sm-4">
+            <div class="card-body fs-5">
+                <button type="button" class="btn btn-primary custom-button" data-bs-toggle="modal" data-bs-target="#public">
+                <i data-feather="plus" style="width:19px; height:19px;"></i>    
+                Saiba Mais
+                </button>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
             <div class="card-body fs-5">
                 <button type="button" class="btn btn-primary custom-button" data-bs-toggle="modal" data-bs-target="#ticket">
                 <i data-feather="plus" style="width:19px; height:19px;"></i>    
@@ -77,7 +85,8 @@
     </table>
 </div>
 
-@include('painel\ticket', ['sectorId' => 1, 'sectorName' => "Iluminação Pública"])
+@include('painel\ticket', ['sectorId' => 1, 'sectorName' => "Iluminação Pública", 'sectorRoute' => "public-lighting"])
 @include('painel/ticket-messages')
 @include('painel/feedback')
+@include('painel/public-lighting/public')
 @endsection

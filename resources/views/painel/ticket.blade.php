@@ -15,6 +15,7 @@
       <div class="modal-body px-4">
         <form method="POST" action="{{ url('/ticket') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="sector_route" value="{{ $sectorRoute }}">
             <div class="mb-3">
                 <label class="form-label dark-gray">Setor</label>
                 <input type="text" class="form-control light-gray" disabled value="{{ $sectorName }}">
@@ -79,6 +80,10 @@
                     </div>
                 </div>
             </div>
+
+            @include('alerts/error-message')
+            @include('alerts/error-validation')
+
             <div class="mt-3 mb-3">
                 <button type="submit" class="btn btn-primary form-control custom-button">Cadastrar</button>
             </div>

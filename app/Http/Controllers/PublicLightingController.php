@@ -24,6 +24,7 @@ class PublicLightingController extends Controller
             $ticket->city_name = $city->name;
             $ticket->uf        = $city->uf;
             $ticket->json_data = $ticket->toJson();
+            $ticket->haveFeedback = is_null(Feedback::where('ticket_id', $ticket->id)->first()) ? false : true;
         }
 
         return view('painel/public-lighting/index', [

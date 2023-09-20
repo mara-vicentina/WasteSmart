@@ -49,11 +49,13 @@
                                 <i data-feather="message-square" class="d-inline edit-info"></i>
                             </button>
                         </div>
+                        @if ($ticket->haveFeedback)
                         <div class="col-4 p-0">
                             <button id="button-see-ticket" class="btn btn-link" onclick="openFeedback({{ $ticket->id }})" data-toggle="tooltip" data-placement="bottom" title="feedback">
                                 <i data-feather="file-text" class="d-inline edit-info"></i>
                             </button>
                         </div>
+                        @endif
                         <div class="col-4 p-0">
                             <form method="POST" action="{{ url('/ticket') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -72,7 +74,7 @@
     </table>
 </div>
 
-@include('painel\ticket', ['sectorId' => 4, 'sectorName' => "Trânsito e Segurança"])
+@include('painel\ticket', ['sectorId' => 4, 'sectorName' => "Trânsito e Segurança", 'sectorRoute' => "traffic-security"])
 @include('painel/ticket-messages')
 @include('painel/feedback')
 @endsection

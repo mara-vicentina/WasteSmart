@@ -51,6 +51,7 @@ Route::middleware([LoginPermission::class])->group(function () {
     Route::post('/ticket/message', [TicketMessageController::class, 'create']);
 
     Route::post('/feedback', [FeedbackController::class, 'create']);
+    Route::delete('/feedback', [FeedbackController::class, 'remove']);
     Route::get('/feedback/{ticketId}', [FeedbackController::class, 'get']);
 });
 

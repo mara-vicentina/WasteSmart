@@ -31,7 +31,9 @@ class TicketsController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/?open_create_modal_ticket=true')->with('errors', $validator->messages());
+            $sector = $request->input('sector_route');
+
+            return redirect("/painel/$sector?open_create_modal_ticket=true")->with('errors', $validator->messages());
         };
 
         $ticket = new Ticket();

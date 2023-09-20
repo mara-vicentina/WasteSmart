@@ -17,6 +17,7 @@
 
 <div class="card mx-5 p-2 shadow overflow-auto custom-card pr-5 py-2">
     <div class="row">
+    <p class="fs-5">Tickets</p>
         <div class="col-sm-4 mb-3 mb-sm-0">
         <div class="card border-left-info shadow py-2">
             <div class="card-body">
@@ -82,46 +83,33 @@
             </tbody>
         </table>
     </div>
-    
-    <div class="card shadow py-2 px-2 mt-4">
-        <p class="fs-5">Feedbacks</p>
-        <table class="table table-striped table-hover mt-2">
-            <thead>
-                <tr>
-                    <th scope="col">Tickets</th>
-                    <th scope="col">Total</th>
-                    <th>Setor</th>
-                    <th>Total por setor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Em Aberto</td>
-                    <td>{{ $aberto }}</td>
-                    <td>Infraestrutura</td>
-                    <td>{{ $setorInfra }}</td>
 
-                </tr>
-                <tr>
-                    <td>Em Andamento</td>
-                    <td>{{ $andamento }}</td>
-                    <td>Acessibilidade</td>
-                    <td>{{ $setorAccessi }}</td>
-                </tr>
-                <tr>
-                    <td>Fechado</td>
-                    <td>{{ $fechado }}</td>
-                    <td>Iluminação Pública</td>
-                    <td>{{ $setorPublic }}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>Trânsito e Segurança</td>
-                    <td>{{ $setorTraffic }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row mt-4">
+    <p class="fs-5">Feedbacks</p>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card border-left-danger shadow py-2">
+            <div class="card-body">
+                <p class="text-xs text-uppercase text-danger">Infeliz</p>
+                <p class="card-text">{{ $infeliz }}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card border-left-warning shadow py-2">
+            <div class="card-body">
+                <p class="text-xs text-uppercase text-warning">Neutro</p>
+                <p class="card-text">{{ $neutro }}</p>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-4">
+        <div class="card border-left-success shadow py-2">
+            <div class="card-body">
+                <p class="text-xs text-uppercase text-success">Satisfeito</p>
+                <p class="card-text">{{ $satisfeito }}</p>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
 

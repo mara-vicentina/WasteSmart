@@ -12,13 +12,11 @@ $(document).ready(function() {
     let paramOpenCreateModalUsuario = currentUrl.searchParams.get("open_create_modal_usuario");
 
     if (paramOpenCreateModalTicket) {
-        const modal = new bootstrap.Modal($('#ticket'), {});
-        modal.show();
+        $('#ticket').modal('show');
     }
 
     if (paramOpenCreateModalTicketMessage) {
-        const modal = new bootstrap.Modal($('#ticket-message'), {});
-        modal.show();
+        $('#ticket-message').modal('show');
     }
 
     // if (paramOpenEditModalTicket) {
@@ -27,13 +25,12 @@ $(document).ready(function() {
     // }
 
     if (paramOpenCreateModalLogin) {
-        const modal = new bootstrap.Modal($('#modal-login'), {});
-        modal.show();
+        console.log('aqui',paramOpenCreateModalLogin)
+        $('#modal-login').modal('show');
     }
 
     if (paramOpenCreateModalUsuario) {
-        const modal = new bootstrap.Modal($('#modal-cadastro-usuarios'), {});
-        modal.show();
+        $('#modal-cadastro-usuarios').modal('show');
     }
 
     if ($('.uf-field').length > 0) {
@@ -135,16 +132,27 @@ $('#ticket-message select[name="situation"]').on('change', function(){
 });
 
 function openFeedback(ticketId) {
-
+console.log(ticketId)
     $('#feedback input[name="id"]').val(ticketId);
     $.get(baseUrl + `/feedback/${ticketId}`).done(function(data){
-
+        console.log(data)
         if (data.feedback) {
+            $('#feedback input[name="id_feedback"]').val(data.feedback.id);
             $('#feedback select[name="evaluation"]').val(data.feedback.evaluation);
             $('#feedback select[name="evaluation"]').prop('disabled', true);
             $('#feedback textarea[name="feedback_message"]').val(data.feedback.feedback_message);
             $('#feedback textarea[name="feedback_message"]').prop('disabled', true);
             $('#feedback .send-feedback').css('display', 'none');
+            $('#feedback .remove-feedback').css('display', 'block');
+            $('#feedback .error-message').text('');
+        } else {
+            $('#feedback textarea[name="feedback_message"]').val('');
+            $('#feedback select[name="evaluation"]').val('1');
+            $('#feedback select[name="evaluation"]').prop('disabled', false);
+            $('#feedback textarea[name="feedback_message"]').prop('disabled', false);
+            $('#feedback .remove-feedback').css('display', 'none');
+            $('#feedback .send-feedback').css('display', 'block');
+            $('#feedback .error-message').text('');
         }
 
         $('#feedback').modal('show');
@@ -158,6 +166,9 @@ function sendFeedback() {
     let evaluation = $('#feedback select[name="evaluation"]').val();
 
     if (!message) {
+        console.log('teste')
+        $('#feedback .error-message').text('O campo mensagem do feedback é obrigatório.');
+        console.log('teste2')
         return;
     }
 
@@ -168,9 +179,24 @@ function sendFeedback() {
         'feedback_message': message
     }).done(function(data){
         if (data.success) {
-            // let modalFeedback = new bootstrap.Modal($('#feedback'), {backdrop: 'static'});
-            // modalFeedback.hide();
             $('#feedback').modal('hide');
         }
     });
 }
+
+function removeFeedback() {
+    let feedback_id = $('#feedback input[name="id_feedback"]').val();
+
+    $.post(baseUrl + `/feedback`, {
+        '_token': csrfToken,
+        '_method': 'DELETE',
+        'feedback_id': feedback_id,
+    }).done(function(data){
+        if (data.success) {
+            $('#feedback').modal('hide');
+        }
+    });
+}
+
+
+

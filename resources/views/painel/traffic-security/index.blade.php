@@ -3,12 +3,20 @@
 @section('page-content')
 <div class="card m-5 shadow">
     <div class="row">
-        <div class="col-md-10 col-sm-7">
+        <div class="col-md-8 col-sm-4">
             <div class="card-body fs-5 main-color">
                 Trânsito e Segurança
             </div>
         </div>
-        <div class="col-md-2 col-sm-5">
+        <div class="col-md-2 col-sm-4">
+            <div class="card-body fs-5">
+                <button type="button" class="btn btn-primary custom-button" data-bs-toggle="modal" data-bs-target="#traffic">
+                <i data-feather="plus" style="width:19px; height:19px;"></i>    
+                Saiba Mais
+                </button>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
             <div class="card-body fs-5">
                 <button type="button" class="btn btn-primary custom-button" data-bs-toggle="modal" data-bs-target="#ticket">
                 <i data-feather="plus" style="width:19px; height:19px;"></i>    
@@ -77,7 +85,8 @@
     </table>
 </div>
 
-@include('painel\ticket', ['sectorId' => 4, 'sectorName' => "Trânsito e Segurança"])
+@include('painel\ticket', ['sectorId' => 4, 'sectorName' => "Trânsito e Segurança", 'sectorRoute' => "traffic-security"])
 @include('painel/ticket-messages')
 @include('painel/feedback')
+@include('painel/traffic-security/traffic')
 @endsection

@@ -45,11 +45,16 @@
             </div>
         </div>
         
-        <p class="form-label dark-gray mt-3 mb-0">{{ Auth::user()->type === 'admin' ? 'Feedback do Usuário' : 'Enviar seu feedback:' }}</p>
+        <p class="form-label dark-gray mt-3 mb-0">{{ Auth::user()->type === 'admin' ? 'Feedback do Usuário' : 'Mensagem do feedback:' }}</p>
         <div class="row">
             <div class="col-12">
                 <div class="mb-3">
                     <textarea rows="3" maxlength="500" class="form-control light-gray" name="feedback_message" placeholder="Insira sua mensagem"></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div>
+                    <p class="text-danger error-message"></p>
                 </div>
             </div>
             <div class="col-4">
@@ -58,6 +63,16 @@
                 </div>
             </div>
         </div>
+        @if (Auth::user()->type === 'user')
+        <div class="row">
+            <div class="col-4">
+                <div class="">
+                    <input type="hidden" name="id_feedback">
+                    <button type="submit" class="btn btn-danger form-control remove-feedback" onclick="removeFeedback()">Remover</button>
+                </div>
+            </div>
+        </div>
+        @endif
       </div>
     </div>
   </div>

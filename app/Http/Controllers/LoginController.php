@@ -31,7 +31,7 @@ class LoginController extends Controller
         }
  
         Session::flash('error_message', 'E-mail ou senha incorreto(s).');
-        return Redirect::to('/');
+        return Redirect::to('/?open_create_modal_login=true')->with('errors', $validator->messages());
     }
 
     public function logout()

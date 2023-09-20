@@ -89,13 +89,19 @@
                 <label for="email" class="form-label dark-gray">E-mail</label>
                 <input type="email" class="form-control light-gray" id="email" name="email" placeholder="Insira seu e-mail">
             </div>
-            <div class="mb-3">
-                <label for="senha" class="form-label dark-gray">Senha</label>
-                <input type="password" class="form-control light-gray" id="password" name="password" placeholder="Insira sua senha">
-            </div>
-            <div class="mb-3">
-                <label for="confirmacao_senha" class="form-label dark-gray">Confirmação de Senha</label>
-                <input type="password" class="form-control light-gray" id="password_confirm" name="password_confirm" placeholder="Confirme sua senha">
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="senha" class="form-label dark-gray">Senha</label>
+                        <input type="password" class="form-control light-gray" id="password" name="password" placeholder="Insira sua senha">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="confirmacao_senha" class="form-label dark-gray">Confirmação de Senha</label>
+                        <input type="password" class="form-control light-gray" id="password_confirm" name="password_confirm" placeholder="Confirme sua senha">
+                    </div>
+                </div>
             </div>
 
             @include('alerts/error-message')

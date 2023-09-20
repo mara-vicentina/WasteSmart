@@ -215,6 +215,8 @@ return [
         'blood_type' => 'tipo sanguíneo',
         'birth_date' => 'data de nascimento',
         'confirmacao_senha' => 'confirmação senha',
+        'password_confirm' => 'confirmação senha',
+        'full_name' => 'nome completo',
     ],
 
 ];

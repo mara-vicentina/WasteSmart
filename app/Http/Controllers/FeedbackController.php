@@ -35,4 +35,12 @@ class FeedbackController extends Controller
             'feedback' => $feedback,
         ];
     }
+
+    public function remove(Request $request)
+    {
+        Feedback::where('id', $request->feedback_id)->delete();
+        return [
+            'success' => true,
+        ];
+    }
 }

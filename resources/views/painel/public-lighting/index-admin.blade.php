@@ -76,7 +76,7 @@
     </table>
 </div>
 
-@include('painel\ticket', ['sectorId' => 1, 'sectorName' => "Iluminação Pública"])
+@include('painel\ticket', ['sectorId' => 1, 'sectorName' => "Iluminação Pública", 'sectorRoute' => "public-lighting"])
 @include('painel/ticket-messages')
 @include('painel/feedback')
 @endsection

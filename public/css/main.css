@@ -108,6 +108,9 @@ body::-webkit-scrollbar-thumb {
 .border-left-success {
     border-left: .25rem solid #1cc88a!important
 }
+.border-left-danger {
+    border-left: .25rem solid #dc3545!important
+}
 
 .border-left-info {
     border-left: .25rem solid #36b9cc!important

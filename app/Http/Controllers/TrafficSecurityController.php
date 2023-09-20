@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\City;
 use App\Models\TicketsMessage;
+use App\Models\Feedback;
 use Auth;
 
 class TrafficSecurityController extends Controller
@@ -23,6 +24,7 @@ class TrafficSecurityController extends Controller
             $ticket->city_name = $city->name;
             $ticket->uf        = $city->uf;
             $ticket->json_data = $ticket->toJson();
+            $ticket->haveFeedback = is_null(Feedback::where('ticket_id', $ticket->id)->first()) ? false : true;
         }
 
         return view('painel/traffic-security/index', [
@@ -41,6 +43,7 @@ class TrafficSecurityController extends Controller
             $ticket->city_name = $city->name;
             $ticket->uf        = $city->uf;
             $ticket->json_data = $ticket->toJson();
+            $ticket->haveFeedback = is_null(Feedback::where('ticket_id', $ticket->id)->first()) ? false : true;
         }
 
         return view('painel/traffic-security/index-admin', [
